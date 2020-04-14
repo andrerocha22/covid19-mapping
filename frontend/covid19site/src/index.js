@@ -2,4 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
+
+import "./assets/styles/global.scss";
+import reducers from "./reducers";
+
+import { loadData } from "./actions/index";
+
+const store = createStore(reducers, applyMiddleware(reduxThunk));
+store.dispatch(loadData());
+
+ReactDOM.render(
+  <Provider store={store}>
+  
+    <App />
+  </Provider>,
+
+  document.getElementById("root")
+);
