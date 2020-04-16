@@ -1,17 +1,25 @@
 import axios from "axios";
-import { SET_DATA, DATA_LOADING, LOAD_ERROR } from "../actions/types";
+import {
+  SET_DATA,
+  DATA_LOADING,
+  LOAD_ERROR,
+  SET_DATA_CHART,
+  DATA_CHART_LOADING,
+} from "../actions/types";
 
 export const loadData = () => {
   return (dispatch) => {
     dispatch(loadingStates());
 
     return axios
-      .get("https://brasil.io/api/dataset/covid19/caso/data?place_type=state")
+      .get("https://brasil.io/api/dataset/covid19/caso/data?&place_type=state")
+
       .then((response) => {
+        // console.log(response);
+
         let totalDeaths = 0;
         let totalCases = 0;
         let states = [];
-        let dates = [];
 
         response.data.results.forEach((data) => {
           if (!states.some((e) => e.name === data.state)) {
@@ -19,6 +27,7 @@ export const loadData = () => {
               name: data.state,
               deaths: data.deaths,
               confirmed: data.confirmed,
+              death_rate: data.death_rate,
             });
 
             totalDeaths += data.deaths;
@@ -31,6 +40,41 @@ export const loadData = () => {
             deaths: totalDeaths,
             cases: totalCases,
             data: states,
+          })
+        );
+      })
+      .catch((error) => {
+        dispatch(loadingStates(error));
+      });
+  };
+};
+
+export const loadDataToChart = () => {
+  return (dispatch) => {
+    return axios
+      .get("https://brasil.io/api/dataset/covid19/caso/data?&place_type=state")
+      .then((response) => {
+        let dates = [];
+        response.data.results.forEach((data) => {
+          if (!dates.some((e) => e.Dia === data.date)) {
+            dates.push({
+              Dia: data.date,
+              Confirmados: 0,
+              Mortes: 0,
+            });
+          } else if (dates.some((e) => e.Dia === data.date)) {
+            dates.some((e) => {
+              if (e.Dia === data.date) {
+                e.Confirmados += data.confirmed;
+                e.Mortes += data.deaths;
+              }
+            });
+          }
+        });
+
+        dispatch(
+          setDataToChart({
+            dates: dates.reverse(),
           })
         );
       })
@@ -57,5 +101,18 @@ export const setData = (data) => {
   return {
     type: SET_DATA,
     payload: data,
+  };
+};
+
+export const setDataToChart = (data) => {
+  return {
+    type: SET_DATA_CHART,
+    payload: data,
+  };
+};
+
+export const loadingStatesToChart = () => {
+  return {
+    type: DATA_CHART_LOADING,
   };
 };

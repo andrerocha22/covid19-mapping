@@ -32,8 +32,10 @@ const abrevToName = {
   RR: " Roraima",
 };
 
-export default function StatesList() {
+export default function StatesCasesTable() {
   const stateList = useSelector((state) => state.data.listState);
+  const aux = useSelector((state) => state.dataTochart.dates);
+  // console.log(aux);
   if (!stateList) {
     throw new Error("Data error");
   }
@@ -46,22 +48,30 @@ export default function StatesList() {
   };
 
   return (
-    <div className="listContainer">
-      <ul className="list">
-        <li key="header" className="item">
-          <h2>Estado</h2>
-          <h2>Número de mortes</h2>
-          <h2>Número de casos</h2>
-        </li>
-        {stateList.map((data) => (
-          <li key={data.name} className="item">
-            <h3>{replaceStateName(data.name)}</h3>
-            <h1>{data.deaths}</h1>
-            <h1>{data.confirmed}</h1>
-            <a href="/">Mais detalhes</a>
-          </li>
-        ))}
-      </ul>
+    <div className="tableContainer">
+      <table>
+        <thead>
+          <tr>
+            <th>Estado</th>
+            <th>Confirmados</th>
+            <th>Mortes</th>
+            <th>Taxa de Mortalidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stateList.map((data) => (
+            <tr key={data.name} className="item">
+              <td>{replaceStateName(data.name)}</td>
+              <td>{data.deaths}</td>
+              <td>{data.confirmed}</td>
+              <td>{Math.round(data.death_rate * 100)}%</td>
+              <td>
+                <a href="/">Ver cidades</a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

@@ -9,14 +9,14 @@ import reduxThunk from "redux-thunk";
 import "./assets/styles/global.scss";
 import reducers from "./reducers";
 
-import { loadData } from "./actions/index";
+import { loadData, loadDataToChart } from "./actions/index";
 
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 store.dispatch(loadData());
+store.dispatch(loadDataToChart());
 
 ReactDOM.render(
   <Provider store={store}>
-  
     <App />
   </Provider>,
 
