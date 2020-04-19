@@ -1,0 +1,80 @@
+.articlesList {
+  max-width: 960px;
+  width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  margin-right: auto;
+  margin-left: auto;
+
+  & .articles {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-gap: 50px;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    & .card {
+      position: relative;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgb(201, 201, 201);
+      border-radius: 8px;
+      padding: 30px;
+      box-sizing: border-box;
+      text-align: center;
+
+      & .title {
+        display: flex;
+        font-size: 25px;
+        font-weight: 500;
+        margin: 0px;
+        color: #181818;
+      }
+
+      & .title:hover {
+        color: #727272;
+      }
+
+      & h4 {
+        position: absolute;
+        right: 30px;
+        bottom: 5px;
+        font-size: 15px;
+        text-align: end;
+      }
+
+      & .description {
+        display: flex;
+        margin: 10px;
+        font-size: 15px;
+        text-align: justify;
+        margin: 0px;
+        color: #181818;
+      }
+
+      & .description:hover {
+        color: #727272;
+        text-decoration: underline;
+      }
+
+      & img {
+        display: flex;
+        width: 100%;
+        height: 200px;
+        object-fit: scale-down;
+        border-radius: 15px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .articlesList {
+    & .articles {
+      grid-template-columns: repeat(1, 100%);
+    }
+  }
+}

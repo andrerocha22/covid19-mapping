@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import "./styles.scss";
+import { Link } from "react-router-dom";
 const abrevToName = {
   AC: " Acre ",
   AL: " Alagoas",
@@ -34,15 +35,13 @@ const abrevToName = {
 
 export default function StatesCasesTable() {
   const stateList = useSelector((state) => state.data.listState);
-  const aux = useSelector((state) => state.dataTochart.dates);
-  // console.log(aux);
+
   if (!stateList) {
     throw new Error("Data error");
   }
 
   const replaceStateName = (abrev) => {
     for (var key in abrevToName) {
-      // let rg = new RegExp(key, "gi");
       if (abrev === key) return abrevToName[key];
     }
   };
@@ -55,18 +54,22 @@ export default function StatesCasesTable() {
             <th>Estado</th>
             <th>Confirmados</th>
             <th>Mortes</th>
-            <th>Taxa de Mortalidade</th>
+            <th className="stateDeathRateHeader">Taxa de Mortalidade</th>
           </tr>
         </thead>
         <tbody>
           {stateList.map((data) => (
             <tr key={data.name} className="item">
-              <td>{replaceStateName(data.name)}</td>
-              <td>{data.deaths}</td>
-              <td>{data.confirmed}</td>
-              <td>{Math.round(data.death_rate * 100)}%</td>
-              <td>
-                <a href="/">Ver cidades</a>
+              <td className="stateName">{replaceStateName(data.name)}</td>
+              <td className="stateDeaths">{data.deaths}</td>
+              <td className="stateConfirmeds">{data.confirmed}</td>
+              <td className="stateDeathRate">
+                {Math.round(data.death_rate * 100)}%
+              </td>
+              <td className="stateMoreInfo">
+                <Link to={`/estado/${data.name.toLowerCase()}`}>
+                  Ver cidades
+                </Link>
               </td>
             </tr>
           ))}

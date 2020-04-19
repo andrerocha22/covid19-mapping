@@ -1,0 +1,28 @@
+.content {
+  margin-top: 50px;
+
+  & .title {
+    margin-bottom: 50px;
+
+    & h1 {
+      color: rgb(24, 0, 109);
+      font-size: 35px;
+    }
+  }
+
+  & .body {
+    & h1 {
+      color: rgb(24, 0, 109);
+    }
+
+    & p {
+      text-align: justify;
+      line-height: 20px;
+    }
+
+    & ul {
+      text-align: justify;
+      line-height: 25px;
+    }
+  }
+}

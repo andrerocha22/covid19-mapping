@@ -1,5 +1,4 @@
 .app {
-  margin-top: 10vh;
   width: 100vw;
   overflow: auto;
   position: relative;
@@ -7,6 +6,7 @@
 
   & .content {
     max-width: 960px;
+    margin-top: 12vh;
     width: 100%;
     padding-right: 0.75rem;
     padding-left: 0.75rem;
@@ -19,7 +19,7 @@
       flex-wrap: wrap;
       margin-right: -0.75rem;
       margin-left: -0.75rem;
-      margin-top: 15px;
+      margin-top: 50px;
       margin-bottom: 30px;
       justify-content: space-between;
 
@@ -31,13 +31,36 @@
     }
 
     & .col-6 {
-      flex: 0 0 50%;
-      max-width: 48%;
+      width: 48%;
     }
 
     & .col-12 {
       flex: 0 0 100%;
       max-width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .app {
+    & .content {
+      margin-top: 12vh;
+      & .row {
+        margin-right: 15px;
+        margin-left: 15px;
+        justify-content: center;
+      }
+
+      & .col-6 {
+        flex: 0 0 100%;
+        margin-top: 15px;
+        max-width: 100%;
+      }
+
+      & .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
     }
   }
 }

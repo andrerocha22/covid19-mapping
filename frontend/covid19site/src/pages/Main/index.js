@@ -1,18 +1,25 @@
-import React from 'react'
+import React from "react";
 import DeathsCard from "../../components/DeathsCard";
 import CasesCard from "../../components/CasesCard";
 import StatesCasesTable from "../../components/StatesCasesTables";
 import Charts from "../../components/Charts";
+import Header from "../../components/Header";
+import { useSelector } from "react-redux";
 
 export default function Main() {
-    return (
-        <>
-            <div className="row">
+  const casesConfirmed = useSelector((state) => state.data.totalCases);
+  const deaths = useSelector((state) => state.data.totalDeaths);
+
+  return (
+    <>
+      <Header />
+      <div className="content">
+        <div className="row">
           <div className="col-6">
-            <DeathsCard />
+            <DeathsCard number={deaths} />
           </div>
           <div className="col-6">
-            <CasesCard />
+            <CasesCard number={casesConfirmed} />
           </div>
         </div>
         <div className="row">
@@ -27,6 +34,7 @@ export default function Main() {
             <StatesCasesTable />
           </div>
         </div>
-        </>
-    )
+      </div>
+    </>
+  );
 }

@@ -27,10 +27,8 @@ export default function Charts() {
 
   return (
     <div className="chart">
-      {console.log(data)}
-
       <ResponsiveContainer>
-        <AreaChart data={data}>
+        <AreaChart data={data ? data : []}>
           <CartesianGrid strokeDasharray="5 5" />
           <XAxis
             dataKey="Dia"

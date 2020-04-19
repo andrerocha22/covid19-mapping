@@ -5,6 +5,12 @@ import {
   LOAD_ERROR,
   SET_DATA_CHART,
   DATA_CHART_LOADING,
+  NEWS_LOADING,
+  SET_NEWS,
+  LOAD_NEWS_ERROR,
+  SET_DATA_STATE,
+  LOAD_ERROR_STATE,
+  DATA_LOADING_STATE,
 } from "../actions/types";
 
 export const loadData = () => {
@@ -67,7 +73,9 @@ export const loadDataToChart = () => {
               if (e.Dia === data.date) {
                 e.Confirmados += data.confirmed;
                 e.Mortes += data.deaths;
+                return true;
               }
+              return false;
             });
           }
         });
@@ -83,6 +91,68 @@ export const loadDataToChart = () => {
       });
   };
 };
+
+export const loadNews = () => {
+  return (dispatch) => {
+    dispatch(loadingNews());
+
+    return axios
+      .get(
+        `https://newsapi.org/v2/top-headlines?sources=globo&q=coronavírus&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
+      )
+
+      .then((response) => {
+        // console.log(response);
+        dispatch(setNews(response.data.articles));
+      })
+      .catch((error) => {
+        dispatch(loadingStates(error));
+      });
+  };
+};
+
+export const loadDataState = (stateToSearch) => {
+  return (dispatch) => {
+    dispatch(loadingState());
+
+    return axios
+      .get(
+        `https://brasil.io/api/dataset/covid19/caso/data?is_last=True&state=${stateToSearch}`
+      )
+
+      .then((response) => {
+        let totalDeaths = 0;
+        let totalCases = 0;
+        let cities = [];
+
+        response.data.results.forEach((data) => {
+          if (!cities.some((e) => e.name === data.city)) {
+            cities.push({
+              name: data.city,
+              deaths: data.deaths,
+              confirmed: data.confirmed,
+            });
+
+            totalDeaths += data.deaths;
+            totalCases += data.confirmed;
+          }
+        });
+
+        dispatch(
+          setDataState({
+            deaths: totalDeaths,
+            cases: totalCases,
+            data: cities,
+          })
+        );
+      })
+      .catch((error) => {
+        dispatch(loadingStates(error));
+      });
+  };
+};
+
+//-------------------------DATA--------------------------------------------
 
 export const loadingStates = () => {
   return {
@@ -103,6 +173,7 @@ export const setData = (data) => {
     payload: data,
   };
 };
+//-------------------------DATA CHART--------------------------------------------
 
 export const setDataToChart = (data) => {
   return {
@@ -114,5 +185,46 @@ export const setDataToChart = (data) => {
 export const loadingStatesToChart = () => {
   return {
     type: DATA_CHART_LOADING,
+  };
+};
+//-------------------------NEWS--------------------------------------------
+export const loadingNews = () => {
+  return {
+    type: NEWS_LOADING,
+  };
+};
+
+export const loadNewsError = (error) => {
+  return {
+    type: LOAD_NEWS_ERROR,
+    payload: error,
+  };
+};
+
+export const setNews = (news) => {
+  return {
+    type: SET_NEWS,
+    payload: news,
+  };
+};
+//-------------------------DATA/STATE--------------------------------------------
+
+export const loadingState = () => {
+  return {
+    type: DATA_LOADING_STATE,
+  };
+};
+
+export const loadErrorState = (error) => {
+  return {
+    type: LOAD_ERROR_STATE,
+    payload: error,
+  };
+};
+
+export const setDataState = (data) => {
+  return {
+    type: SET_DATA_STATE,
+    payload: data,
   };
 };
