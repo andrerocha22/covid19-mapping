@@ -8,7 +8,6 @@ import Header from "../../components/Header";
 
 export default function News() {
   const news = useSelector((state) => state.news.listArticles);
-  console.log(news);
   moment.locale("pt-BR");
 
   const listArticles = () => {
