@@ -1,4 +1,4 @@
-.tableContainer {
+.tableCitiesContainer {
   display: flex;
   width: 100%;
   align-items: center;
@@ -64,8 +64,9 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .tableContainer {
+  .tableCitiesContainer {
     & table {
+      table-layout: fixed;
       & thead {
         & tr {
           & .stateDeathRateHeader {

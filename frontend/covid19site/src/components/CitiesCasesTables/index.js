@@ -27,24 +27,26 @@ export default function CitiesCasesTable(props) {
       );
     } else if (status === "received") {
       return (
-        <table>
-          <thead>
-            <tr>
-              <th>Estado</th>
-              <th>Confirmados</th>
-              <th>Mortes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {citiesList.map((data) => (
-              <tr key={data.name} className="item">
-                <td className="stateName">{data.name}</td>
-                <td className="stateConfirmeds">{data.confirmed}</td>
-                <td className="stateDeaths">{data.deaths}</td>
+        <div className="tableCitiesContainer">
+          <table>
+            <thead>
+              <tr>
+                <th>Estado</th>
+                <th>Confirmados</th>
+                <th>Mortes</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {citiesList.map((data) => (
+                <tr key={data.name} className="item">
+                  <td className="stateName">{data.name}</td>
+                  <td className="stateConfirmeds">{data.confirmed}</td>
+                  <td className="stateDeaths">{data.deaths}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       );
     }
   };
