@@ -1,6 +1,7 @@
 {
   "name": "covid19site",
   "version": "0.1.0",
+  "author": "Andre Felipe Rocha",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

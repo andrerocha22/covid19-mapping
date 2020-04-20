@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../components/Header";
 import "./styles.scss";
+import Footer from "../../components/Footer";
 
 export default function About() {
   return (
@@ -10,7 +11,7 @@ export default function About() {
         <section className="title">
           <h1>Sobre a doença</h1>
         </section>
-        <section  className="body">
+        <section className="body">
           <h1>O que é COVID-19</h1>
           <p>
             A COVID-19 é uma doença causada pelo coronavírus SARS-CoV-2, que
@@ -24,7 +25,7 @@ export default function About() {
           </p>
         </section>
 
-        <section  className="body">
+        <section className="body">
           <h1>O que é o coronavírus?</h1>
           <p>
             Coronavírus é uma família de vírus que causam infecções
@@ -47,7 +48,7 @@ export default function About() {
           </p>
         </section>
 
-        <section  className="body">
+        <section className="body">
           <h1>Quais são os sintomas</h1>
           <p>
             Os sintomas da COVID-19 podem variar de um simples resfriado até uma
@@ -62,7 +63,7 @@ export default function About() {
           </ul>
         </section>
 
-        <section  className="body">
+        <section className="body">
           <h1>Como é transmitido</h1>
           <p>
             A transmissão acontece de uma pessoa doente para outra ou por
@@ -81,7 +82,7 @@ export default function About() {
           </ul>
         </section>
 
-        <section  className="body">
+        <section className="body">
           <h1>Diagnóstico</h1>
           <p>
             O diagnóstico da COVID-19 é realizado primeiramente pelo
@@ -128,7 +129,7 @@ export default function About() {
             observados pelo profissional durante a consulta.
           </p>
         </section>
-        <section  className="body">
+        <section className="body">
           <h1>Como se proteger</h1>
           <p>As recomendações de prevenção à COVID-19 são as seguintes:</p>
           <ul>
@@ -167,7 +168,12 @@ export default function About() {
             </li>
           </ul>
         </section>
+        <h4>
+          Fonte:
+          <a href="https://coronavirus.saude.gov.br/">Ministério da Saúde</a>
+        </h4>
       </div>
+      <Footer />
     </>
   );
 }

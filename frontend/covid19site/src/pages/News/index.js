@@ -5,6 +5,7 @@ import "moment/locale/pt-br";
 
 import "./styles.scss";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export default function News() {
   const news = useSelector((state) => state.news.listArticles);
@@ -19,7 +20,7 @@ export default function News() {
               <a href={e.url} className="title">
                 {e.title}
               </a>
-              <img src={e.urlToImage} alt=""/>
+              <img src={e.urlToImage} alt="" />
               <a href={e.url} className="description">
                 {e.description}
               </a>
@@ -37,6 +38,7 @@ export default function News() {
     <>
       <Header />
       <div className="articlesList">{listArticles()}</div>
+      <Footer />
     </>
   );
 }

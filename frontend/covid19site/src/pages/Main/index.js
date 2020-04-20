@@ -5,6 +5,7 @@ import StatesCasesTable from "../../components/StatesCasesTables";
 import Charts from "../../components/Charts";
 import Header from "../../components/Header";
 import { useSelector } from "react-redux";
+import Footer from "../../components/Footer";
 
 export default function Main() {
   const casesConfirmed = useSelector((state) => state.data.totalCases);
@@ -35,6 +36,7 @@ export default function Main() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import CitiesCasesTable from "../../components/CitiesCasesTables";
 import DeathsCard from "../../components/DeathsCard";
 import CasesCard from "../../components/CasesCard";
+import Footer from "../../components/Footer";
 import "./styles.scss";
 const abrevToName = {
   AC: " Acre ",
@@ -69,6 +70,7 @@ export default function ChoosedState() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
