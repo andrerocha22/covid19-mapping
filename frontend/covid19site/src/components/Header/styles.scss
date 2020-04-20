@@ -28,6 +28,7 @@
   & .items {
     display: flex;
     width: 100%;
+    margin-left: 50px;
     & .list {
       margin: 0;
       padding: 0;
@@ -35,6 +36,7 @@
       width: 100%;
       list-style: none;
       & .listItems {
+        margin-left: 20px;
         & .link {
           float: left;
           display: block;
@@ -120,9 +122,13 @@
 
     & .items {
       display: flex;
+      margin-left: 0px;
+
       & .list {
         flex-direction: column;
         & .listItems {
+          margin-left: 0px;
+
           & .link {
             margin: 10px;
             float: none;

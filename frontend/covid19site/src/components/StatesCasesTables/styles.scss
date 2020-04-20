@@ -45,6 +45,16 @@
           border-top: 1px solid #ddd;
           padding: 8px;
           text-align: start;
+
+          & a {
+            color: #244ccf;
+            text-decoration: underline;
+          }
+
+          & a:hover {
+            color: #183286;
+            text-decoration: underline;
+          }
         }
 
         & .stateMoreInfo {
@@ -59,7 +69,7 @@
           text-align: center;
           align-items: center;
 
-          & a {
+          & .buttonSeeMore {
             display: flex;
             width: 50%;
             background-color: #4144e0;

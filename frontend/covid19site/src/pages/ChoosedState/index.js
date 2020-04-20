@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import CitiesCasesTable from "../../components/CitiesCasesTables";
 import DeathsCard from "../../components/DeathsCard";
 import CasesCard from "../../components/CasesCard";
-
+import "./styles.scss";
 const abrevToName = {
   AC: " Acre ",
   AL: " Alagoas",
@@ -51,7 +51,9 @@ export default function ChoosedState() {
     <>
       <Header />
       <div className="content">
-        <h1>{replaceStateName(params.id.toUpperCase())}</h1>
+        <div className="row">
+          <h1>{replaceStateName(params.id.toUpperCase())}</h1>
+        </div>
         <div className="row">
           <div className="col-6">
             <DeathsCard number={deaths} />

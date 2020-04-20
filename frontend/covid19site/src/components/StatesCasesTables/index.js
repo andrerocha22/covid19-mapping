@@ -60,14 +60,23 @@ export default function StatesCasesTable() {
         <tbody>
           {stateList.map((data) => (
             <tr key={data.name} className="item">
-              <td className="stateName">{replaceStateName(data.name)}</td>
+              <td className="stateName">
+                <Link
+                  to={`/estado/${data.name.toLowerCase()}`}
+                >
+                  {replaceStateName(data.name)}
+                </Link>
+              </td>
               <td className="stateDeaths">{data.deaths}</td>
               <td className="stateConfirmeds">{data.confirmed}</td>
               <td className="stateDeathRate">
                 {Math.round(data.death_rate * 100)}%
               </td>
               <td className="stateMoreInfo">
-                <Link to={`/estado/${data.name.toLowerCase()}`}>
+                <Link
+                  className="buttonSeeMore"
+                  to={`/estado/${data.name.toLowerCase()}`}
+                >
                   Ver cidades
                 </Link>
               </td>
