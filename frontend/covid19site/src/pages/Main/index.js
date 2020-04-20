@@ -24,13 +24,13 @@ export default function Main() {
         </div>
         <div className="row">
           <div className="col-12">
-            <h3>Casos confirmados de Covid19 no Brasil</h3>
+            <h3>Casos confirmados de Coronavírus no Brasil</h3>
             <Charts />
           </div>
         </div>
         <div className="row">
           <div className="col-12">
-            <h3>Casos confirmados de Covid19 em cada estado</h3>
+            <h3>Casos confirmados de Coronavírus em cada estado</h3>
             <StatesCasesTable />
           </div>
         </div>

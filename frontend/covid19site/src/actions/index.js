@@ -121,21 +121,23 @@ export const loadDataState = (stateToSearch) => {
       )
 
       .then((response) => {
+        console.log(response);
         let totalDeaths = 0;
         let totalCases = 0;
         let cities = [];
 
         response.data.results.forEach((data) => {
+          if (data.city === null) return;
           if (!cities.some((e) => e.name === data.city)) {
             cities.push({
               name: data.city,
               deaths: data.deaths,
               confirmed: data.confirmed,
             });
-
-            totalDeaths += data.deaths;
-            totalCases += data.confirmed;
           }
+
+          totalDeaths = response.data.results[response.data.count - 1].deaths;
+          totalCases = response.data.results[response.data.count - 1].confirmed;
         });
 
         dispatch(

@@ -39,8 +39,8 @@ export default function CitiesCasesTable(props) {
             {citiesList.map((data) => (
               <tr key={data.name} className="item">
                 <td className="stateName">{data.name}</td>
-                <td className="stateDeaths">{data.deaths}</td>
                 <td className="stateConfirmeds">{data.confirmed}</td>
+                <td className="stateDeaths">{data.deaths}</td>
               </tr>
             ))}
           </tbody>

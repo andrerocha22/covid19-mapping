@@ -14,6 +14,10 @@ export default function Header() {
     }
   };
 
+  const setActive = () =>{
+
+  }
+
   return (
     <div className="topbar" id="header">
       <div className="icon">
